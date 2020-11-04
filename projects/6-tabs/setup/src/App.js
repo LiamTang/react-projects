@@ -21,7 +21,7 @@ function App() {
 		fetchJobs();
 	}, []);
 
-  const allCompanies = new Set(jobs.map((job) => job.company));
+	const allCompanies = new Set(jobs.map((job) => job.company));
 
 	if (loading) {
 		return (
@@ -40,7 +40,13 @@ function App() {
 			<div className="jobs-center">
 				<div className="btn-container">
 					{jobs.map((item, index) => (
-						<button key={index} className="job-btn">
+						<button
+							key={item.id}
+							className={`job-btn ${
+								index === value && "active-btn"
+							}`}
+							onClick={() => setValue(index)}
+						>
 							{item.company}
 						</button>
 					))}
